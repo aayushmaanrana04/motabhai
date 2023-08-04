@@ -1,4 +1,6 @@
-<script>
+<script lang="ts">
+	import Logout from '../../components/logout.svelte';
+	import { auth as authStore } from '@store';
 	import {
 		Table,
 		TableBody,
@@ -39,3 +41,7 @@
 		</TableBody>
 	</Table>
 </div>
+
+<!-- <p>dashboard</p>
+<p>{$authStore?.uid}</p>
+<Logout /> -->
