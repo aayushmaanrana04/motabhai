@@ -10,7 +10,7 @@
 			if (user) {
 				const { uid } = user;
 				console.log(uid, 'uid');
-				const data = await fetch('https://test.buyhatke.com/isLoggedIn', {
+				const data = await fetch('airshot/isLoggedIn', {
 					body: uid,
 					method: 'POST'
 				});

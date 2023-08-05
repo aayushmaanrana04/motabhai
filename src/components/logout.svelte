@@ -7,7 +7,7 @@
 	async function logout() {
 		try {
 			const { auth } = initFirebase();
-			const data = await fetch('https://test.buyhatke.com/logout', {
+			const data = await fetch('airshot/logout', {
 				method: 'POST'
 			});
 			if (data) {

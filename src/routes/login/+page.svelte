@@ -16,7 +16,7 @@
 			if (response) {
 				localStorage.setItem('uid', response.user.uid);
 				const { uid, email, displayName } = response.user;
-				const data = await fetch('https://test.buyhatke.com/login', {
+				const data = await fetch('airshot/login', {
 					body: JSON.stringify({ uid, email, displayName }),
 					method: 'POST'
 				});
