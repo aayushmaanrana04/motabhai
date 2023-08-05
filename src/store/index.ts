@@ -31,3 +31,6 @@ export const auth = writable<User | null>(null);
 export const isLoggedIn = writable<boolean>(false);
 
 export const gameData = writable<gameDataType[]>();
+export const polyData = writable<gameDataType[]>();
+
+export const pageNum = writable<number>(1);

@@ -3,24 +3,23 @@
 	import Chain from '../../components/Chain.svelte';
 	import Table from '../../components/table.svelte';
 	import { Button, Dropdown, DropdownItem, Chevron } from 'flowbite-svelte';
-	import { gameData } from '@store';
+	import { gameData, polyData } from '@store';
 
-	let dropdownOpen = false;
-	let selectedChainValue: String = '';
+	let dropdownOpen1 = false;
+	let dropdownOpen2 = false;
 	let data = [
 		{ chainName: 'POLYGON', isDisabled: false },
 		{ chainName: 'BNB', isDisabled: true },
 		{ chainName: 'SOLANA', isDisabled: true }
 	];
-	let handleSelect = (value: String) => {
-		selectedChainValue = value;
-	};
-	let selection: number = 10;
+	let selection: number = 0;
+	let filterSelect: number = 1;
+	let filters = ['Score', 'Amount', 'Number of Transactions'];
 
 	const handleExport = async () => {
 		const params = new URLSearchParams();
 		params.append('pageNo', String(3));
-		const response = await fetch('https://test.buyhatke.com/airshot/categories/csv', {
+		const response = await fetch('https://test.buyhatke.com/airshot/categories/csv/downloadData', {
 			body: params,
 			method: 'POST'
 		});
@@ -30,7 +29,7 @@
 	};
 
 	onMount(() => {
-		getGame();
+		getPolygon();
 	});
 
 	const getGame = async () => {
@@ -45,6 +44,32 @@
 			gameData.set(data);
 		}
 	};
+
+	const getPolygon = async () => {
+		const params = new URLSearchParams();
+		params.append('pageNo', String(1));
+		const response = await fetch('https://test.buyhatke.com/airshot/categories/chain/polygon', {
+			body: params,
+			method: 'POST'
+		});
+		const { data } = await response.json();
+		if (data) {
+			polyData.set(data);
+		}
+	};
+
+	const getFilter = async () => {
+		const params = new URLSearchParams();
+		params.append('pageNo', String(1));
+		const response = await fetch('https://test.buyhatke.com/airshot/categories/chain/polygon', {
+			body: params,
+			method: 'POST'
+		});
+		const { data } = await response.json();
+		if (data) {
+			//do something
+		}
+	};
 </script>
 
 <div class="container mx-auto flex flex-col justify-center items-center">
@@ -54,11 +79,12 @@
 	</div>
 
 	<div class="">
-		<div class="flex">
+		<div class="flex gap-2">
+			<!-- chain select  -->
 			<Button
 				class="focus:ring-0 text-md text-black  flex justify-between {selection < 5
 					? 'bg-slate-100'
-					: 'border border-1'} p-2 px-4 rounded"
+					: 'bg-slate-600'} p-1 px-4 rounded"
 			>
 				<Chevron>
 					{#if selection > 5}
@@ -68,12 +94,12 @@
 					{/if}
 				</Chevron>
 			</Button>
-			<Dropdown bind:open={dropdownOpen} class="overflow-y-auto overflow-x-hidden">
+			<Dropdown bind:open={dropdownOpen1} class="overflow-y-auto overflow-x-hidden">
 				{#each data as { chainName, isDisabled }, index (index)}
 					<DropdownItem
 						on:click={() => {
 							selection = Number(index);
-							dropdownOpen = false;
+							dropdownOpen1 = false;
 						}}
 						class="flex gap-2 items-center disabled:opacity-40"
 						disabled={isDisabled}
@@ -85,26 +111,38 @@
 					</DropdownItem>
 				{/each}
 			</Dropdown>
+			<!-- filter select  -->
+			<Button class="focus:ring-0 text-md text-black flex justify-between bg-slate-100 rounded">
+				<Chevron>
+					<span class="text-lg p-1 mr-auto">{filters.at(filterSelect)}</span>
+				</Chevron>
+			</Button>
+			<Dropdown bind:open={dropdownOpen2} class="overflow-y-auto overflow-x-hidden">
+				{#each filters as item, index (index)}
+					<DropdownItem
+						on:click={() => {
+							filterSelect = Number(index);
+							dropdownOpen2 = false;
+						}}
+						class="flex gap-2 items-center disabled:opacity-40"
+					>
+						<div class="w-full flex gap-2">
+							{item}
+						</div>
+					</DropdownItem>
+				{/each}
+			</Dropdown>
+
 			<Button
-				class={selection === 10 ? 'bg-slate-100 text-black' : 'border border-1'}
+				class="bg-green-500 text-white ml-auto"
 				on:click={() => {
-					selection = 10;
-				}}>Games</Button
+					handleExport();
+				}}>Export</Button
 			>
 		</div>
 
-		{#if selection <= 5}
-			<Chain />
-		{:else if selection === 10}
-			<Table myData={$gameData} />
-		{/if}
+		<Table myData={$polyData} {filterSelect} />
 	</div>
-
-	<Button
-		on:click={() => {
-			handleExport;
-		}}>Export</Button
-	>
 </div>
 
 <!-- <Button class="text-gray-800 border border-1 rounded-t-md border-white hover:bg-slate-500"
