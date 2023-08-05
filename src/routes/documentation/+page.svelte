@@ -1,0 +1,3 @@
+<div class="flex text-4xl items-center mx-auto justify-center text-white h-screen bg-black">
+	Coming Soon .....
+</div>

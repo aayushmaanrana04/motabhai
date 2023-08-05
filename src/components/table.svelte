@@ -19,13 +19,13 @@
 				<div class="-my-2 pb-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
 					<div
 						class="align-middle inline-block shadow overflow-hidden sm:rounded-lg border
-                        border-gray-200 dark:border-zinc-800"
+                        border-zinc-800"
 					>
 						<table class="w-screen-lg max-w-full text-base">
 							<thead class="">
 								<tr class="hover:bg-gray-100 dark:hover:bg-neutral-900 w-full">
 									<th
-										class="px-6 py-3 text-left uppercase tracking-wider border-b border-gray-200 dark:border-zinc-800 font-light"
+										class="px-6 py-3 text-left uppercase tracking-wider border-b border-zinc-800 font-light"
 									>
 										<span>Wallet Address</span>
 									</th>
@@ -44,14 +44,14 @@
 							</thead>
 							<tbody class="text-sm overflow-y-scroll">
 								{#each Object.entries(myData) as [index, { id, walletAddress, amount, token, chainName, numberOfTransactions, score }]}
-									<tr class="hover:bg-gray-100 dark:hover:bg-neutral-900">
+									<tr class="hover:bg-neutral-900">
 										<td
-											class="pr-20 md:pr-40 lg:pr-52 xl:pr-96 pl-5 py-5 font-medium whitespace-no-wrap leading-5 border-b border-gray-200 dark:border-zinc-800"
+											class="pr-20 md:pr-40 lg:pr-52 xl:pr-96 pl-5 py-5 font-medium whitespace-no-wrap leading-5 border-b border-zinc-800"
 										>
 											{walletAddress}
 										</td>
 										<td
-											class="pr-5 pl-20 md:pl-40 lg:pl-96 xl:pl-80 py-5 whitespace-no-wrap leading-5 border-b border-gray-200 dark:border-zinc-800"
+											class="pr-5 pl-20 md:pl-40 lg:pl-96 xl:pl-80 py-5 whitespace-no-wrap leading-5 border-b border-zinc-800"
 										>
 											<span class="flex gap-4 text-xs items-center justify-center mr-4">
 												{#if filterSelect === 0}
