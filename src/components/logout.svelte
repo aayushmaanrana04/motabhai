@@ -19,8 +19,4 @@
 	}
 </script>
 
-<Button
-	on:click={logout}
-	class="focus:ring-0 text-black bg-white dark:bg-white dark:text-black px-3 py-2 text-xs"
-	>Logout</Button
->
+<Button on:click={logout} class="focus:ring-0 bg-white text-black px-3 py-2 text-xs">Logout</Button>

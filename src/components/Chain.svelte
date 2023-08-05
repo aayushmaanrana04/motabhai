@@ -117,25 +117,25 @@
 	}
 </script>
 
-<div class="flex flex-col justify-center h-full text-black dark:text-white">
+<div class="flex flex-col justify-center h-full text-white">
 	<table class="max-w-full mt-5 table">
 		<div class=" max-w-full flex items-center justify-center">
 			<div class="flex flex-col">
 				<div class="-my-2 pb-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
 					<div
 						class="align-middle inline-block shadow overflow-hidden sm:rounded-lg border
-                        border-gray-200 dark:border-zinc-800"
+                        border-zinc-800"
 					>
 						<table class="w-screen-lg max-w-full text-base">
 							<thead>
-								<tr class="hover:bg-gray-100 dark:hover:bg-neutral-900">
+								<tr class="hover:bg-neutral-900">
 									<th
-										class="px-6 py-3 text-left uppercase tracking-wider border-b border-gray-200 dark:border-zinc-800 font-light"
+										class="px-6 py-3 text-left uppercase tracking-wider border-b border-zinc-800 font-light"
 									>
 										<button> Walet Address </button>
 									</th>
 									<th
-										class="px-6 py-3 text-right leading-4 uppercase tracking-wider border-b border-gray-200 dark:border-zinc-800 font-extralight"
+										class="px-6 py-3 text-right leading-4 uppercase tracking-wider border-b border-zinc-800 font-extralight"
 									>
 										<button> Score </button>
 									</th>
@@ -143,14 +143,14 @@
 							</thead>
 							<tbody class="text-sm">
 								{#each currentData as { walletAddress, score }}
-									<tr class="hover:bg-gray-100 dark:hover:bg-neutral-900">
+									<tr class="hover:bg-neutral-900">
 										<td
-											class="pr-20 md:pr-40 lg:pr-52 xl:pr-96 pl-5 py-5 font-medium whitespace-no-wrap leading-5 border-b border-gray-200 dark:border-zinc-800"
+											class="pr-20 md:pr-40 lg:pr-52 xl:pr-96 pl-5 py-5 font-medium whitespace-no-wrap leading-5 border-b border-zinc-800"
 										>
 											{walletAddress}
 										</td>
 										<td
-											class="pr-5 pl-20 md:pl-40 lg:pl-96 xl:pl-80 py-5 whitespace-no-wrap leading-5 border-b border-gray-200 dark:border-zinc-800"
+											class="pr-5 pl-20 md:pl-40 lg:pl-96 xl:pl-80 py-5 whitespace-no-wrap leading-5 border-b border-zinc-800"
 										>
 											{score}
 										</td>
