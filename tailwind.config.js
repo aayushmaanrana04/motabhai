@@ -14,7 +14,7 @@ const config = {
 			colors: {
 				// flowbite-svelte
 				primary: '#4B6E9B',
-				bg: '#1A1A1A',
+				bg: 'black',
 				secondary: '#E0A64B',
 				accent: '#00CC66 ',
 				text: '#F5F5F5',
