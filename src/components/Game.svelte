@@ -47,7 +47,7 @@
 					<div
 						class="align-middle inline-block shadow overflow-hidden sm:rounded-lg border border-zinc-800"
 					>
-						<table class="w-screen-lg bg-black text-white max-w-full text-base">
+						<table class="w-screen-lg bg-black text-white text-base">
 							<thead>
 								<tr class="hover:bg-neutral-900">
 									<th
@@ -66,12 +66,12 @@
 								{#each data as { walletAddress, score }}
 									<tr class="hover:bg-neutral-900">
 										<td
-											class="pr-20 md:pr-40 lg:pr-52 xl:pr-96 pl-5 py-5 font-medium whitespace-no-wrap leading-5 border-b border-zinc-800"
+											class="pl-3 sm:pl-5 sm:pr-24 md:pr-40 lg:pr-52 xl:pr-96 py-5 font-medium whitespace-no-wrap leading-5 border-b border-zinc-800"
 										>
 											{walletAddress}
 										</td>
 										<td
-											class="pr-5 pl-20 md:pl-40 lg:pl-96 xl:pl-80 py-5 whitespace-no-wrap leading-5 border-b border-zinc-800"
+											class="pr-5 sm:pl-24 md:pl-40 lg:pl-96 xl:pl-80 py-5 whitespace-no-wrap leading-5 border-b border-zinc-800"
 										>
 											{score}
 										</td>
