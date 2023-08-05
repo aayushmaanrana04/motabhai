@@ -4,7 +4,7 @@
 	import { isLoggedIn } from '@store';
 	import { signInWithPopup } from 'firebase/auth';
 	import { Button } from 'flowbite-svelte';
-
+	import Header from '../../components/Header.svelte';
 	let emailData = '';
 
 	async function login() {
@@ -37,18 +37,19 @@
 	};
 </script>
 
+<Header />
 <div
 	class="border border-1 border-gray-200 absolute top-0 left-0 bottom-0 right-0 m-4 rounded-lg pointer-events-none z-10"
 />
 
 <section>
 	<div class="flex items-end p-6 bg-zinc-900 m-4 relative top-0 bottom-0 left-0 rounded-l-lg">
-		<span class="text-white font-light text-sm mb-8 ml-6">"We need some text here"</span>
+		<span class=" font-light text-sm mb-8 ml-6">"We need some text here"</span>
 	</div>
 	<div class="flex flex-col justify-center gap-2">
 		<div class="flex flex-col text-center gap-4">
-			<span class="text-xl font-medium text-white">Create an account </span>
-			<span class="text-sm text-white">Enter your email below to create your account </span>
+			<span class="text-xl font-medium">Create an account </span>
+			<span class="text-sm">Enter your email below to create your account </span>
 			<input
 				class="w-64 mx-auto p-2 rounded bg-bg border border-1 border-zinc-900 text-white outline-0"
 				placeholder="name@example.com"

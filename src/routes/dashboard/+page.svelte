@@ -15,25 +15,27 @@
 
 <div class="container mx-auto flex flex-col justify-center items-center">
 	<div class=" py-10 text-start mr-auto ml-8 xl:ml-20">
-		<h1 class="text-3xl pb-1 text-white">Welcome Back!</h1>
+		<h1 class="text-3xl pb-1">Welcome Back!</h1>
 		<p class="text-gray-400">Here's a list of Chain Wallet Address</p>
 	</div>
 
 	<div>
-		<Tabs
-			style="pill"
-			class="text-white bg-black text-base focus:bg-none px-0  mx-0 my-0"
-			contentClass="px-0 py-0"
-		>
-			<Button class="px-0 py-0 text-base focus:ring-0" on:mouseenter={() => (dropdownOpen = true)}
-				><Chevron>
-					<TabItem title="Chain" defaultClass="text-xl">
-						<Chain />
-					</TabItem>
-				</Chevron></Button
-			>
+		<Tabs style="pill" class="  text-base  px-0  mx-0 my-0" contentClass="px-0 py-0">
+			<Button class="px-0 py-0 text-base focus:ring-0 " on:mouseenter={() => (dropdownOpen = true)}>
+				<TabItem
+					title="Select chain"
+					defaultClass="text-xl"
+					inactiveClasses="text-black dark:text-white p-2 m-0"
+					activeClasses="text-black dark:text-white p-2"
+				>
+					<Chain />
+				</TabItem>
+			</Button>
 
-			<Dropdown bind:open={dropdownOpen} class="w-32 p-1 space-y-1 text-sm">
+			<Dropdown
+				bind:open={dropdownOpen}
+				class="w-32 p-1 space-y-1 text-sm border border-gray-200 dark:border-gray-800"
+			>
 				{#each data as chain}
 					<DropdownItem on:click={() => handleSelect(chain.chainName)}
 						>{chain.chainName}</DropdownItem
@@ -41,7 +43,13 @@
 				{/each}
 			</Dropdown>
 
-			<TabItem open title="Game" defaultClass="text-xl focus:bg-none" class="focus:bg-pink">
+			<TabItem
+				open
+				title="Game"
+				defaultClass="text-xl"
+				inactiveClasses="text-black dark:text-white p-2 m-0"
+				activeClasses="text-black dark:text-white p-2"
+			>
 				<Game />
 			</TabItem>
 		</Tabs>
