@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import Chain from '../../components/Chain.svelte';
 	import Table from '../../components/table.svelte';
 	import { Button, Dropdown, DropdownItem, Chevron } from 'flowbite-svelte';
 	import { gameData, polyData } from '@store';
@@ -18,13 +17,24 @@
 
 	const handleExport = async () => {
 		const params = new URLSearchParams();
-		params.append('pageNo', String(3));
+		params.append('pageNo', String(1));
 		const response = await fetch('https://test.buyhatke.com/airshot/categories/csv/downloadData', {
 			body: params,
 			method: 'POST'
 		});
 		if (response) {
-			console.log('sent');
+			console.log(response);
+			const data = await response.json();
+			console.log(data);
+			const blob = new Blob([data.csv], { type: 'text/csv' });
+			const url = URL.createObjectURL(blob);
+			console.log(url);
+			const link = document.createElement('a');
+			link.href = url;
+			link.download = `airshot.csv`;
+			link.click();
+			URL.revokeObjectURL(url);
+			// window.location.href = response.url;
 		}
 	};
 
@@ -58,18 +68,45 @@
 		}
 	};
 
-	const getFilter = async () => {
+	const getAmount = async () => {
 		const params = new URLSearchParams();
 		params.append('pageNo', String(1));
-		const response = await fetch('https://test.buyhatke.com/airshot/categories/chain/polygon', {
+		const response = await fetch('https://test.buyhatke.com/airshot/categories/sort/amount', {
 			body: params,
 			method: 'POST'
 		});
 		const { data } = await response.json();
 		if (data) {
+			polyData.set(data);
 			//do something
 		}
 	};
+
+	const getNum = async () => {
+		const params = new URLSearchParams();
+		params.append('pageNo', String(1));
+		const response = await fetch(
+			'https://test.buyhatke.com/airshot/categories/sort/countOfTransactions',
+			{
+				body: params,
+				method: 'POST'
+			}
+		);
+		const { data } = await response.json();
+		if (data) {
+			polyData.set(data);
+			//do something
+		}
+	};
+
+	$: {
+		if (filterSelect === 1) {
+			getAmount();
+		}
+		if (filterSelect === 2) {
+			getNum();
+		}
+	}
 </script>
 
 <div class="container mx-auto flex flex-col justify-center items-center">

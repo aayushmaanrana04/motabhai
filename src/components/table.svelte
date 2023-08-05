@@ -16,7 +16,7 @@
 	<table class="max-w-full mt-5 table mb-10">
 		<div class=" max-w-full flex items-center justify-center">
 			<div class="flex flex-col">
-				<div class="-my-2 pb-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8 max-h-[40em]">
+				<div class="-my-2 pb-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
 					<div
 						class="align-middle inline-block shadow overflow-hidden sm:rounded-lg border
                         border-gray-200 dark:border-zinc-800"
@@ -32,7 +32,13 @@
 									<th
 										class="px-6 py-3 text-right leading-4 uppercase tracking-wider border-b border-gray-200 dark:border-zinc-800 font-extralight ml-auto"
 									>
-										<span>Score</span>
+										{#if filterSelect === 0}
+											<span>Score</span>
+										{:else if filterSelect === 1}
+											<span>Amount</span>
+										{:else if filterSelect === 2}
+											<span>Number Of Transactions</span>
+										{/if}
 									</th>
 								</tr>
 							</thead>

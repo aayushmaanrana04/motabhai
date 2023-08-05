@@ -10,13 +10,13 @@
 			if (user) {
 				const { uid } = user;
 				console.log(uid, 'uid');
-				const data = await fetch('airshot/isLoggedIn', {
-					body: uid,
-					method: 'POST'
-				});
-				if (data) {
-					console.log(data);
-				}
+				// const data = await fetch('http://test.buyhatke.com/airshot/auth/isLoggedIn', {
+				// 	body: uid,
+				// 	method: 'POST'
+				// });
+				// if (data) {
+				// 	console.log(data);
+				// }
 				isLoggedIn.set(true);
 			} else {
 				console.log('user logged out probably');

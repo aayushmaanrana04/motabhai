@@ -10,9 +10,9 @@
 			const data = await fetch('airshot/logout', {
 				method: 'POST'
 			});
-			if (data) {
-				await signOut(auth);
-			}
+			// if (data) {
+			await signOut(auth);
+			// }
 		} catch (e) {
 			console.log(e);
 		}
