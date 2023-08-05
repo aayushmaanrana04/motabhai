@@ -7,12 +7,11 @@
 	async function logout() {
 		try {
 			const { auth } = initFirebase();
-			const data = await fetch('test.buyhatke.com/logout', {
+			const data = await fetch('https://test.buyhatke.com/logout', {
 				method: 'POST'
 			});
 			if (data) {
 				await signOut(auth);
-				localStorage.removeItem('uid');
 			}
 		} catch (e) {
 			console.log(e);

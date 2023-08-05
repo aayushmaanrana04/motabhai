@@ -1,4 +1,6 @@
 <script lang="ts">
+	import Score from './score.svelte';
+
 	let data = [
 		{
 			walletAddress: '1BvBMSEYstWetqTFn5Au4m4GFg7xJaNVN2',
@@ -73,7 +75,11 @@
 										<td
 											class="pr-5 sm:pl-24 md:pl-40 lg:pl-96 xl:pl-80 py-5 whitespace-no-wrap leading-5 border-b border-zinc-800"
 										>
-											{score}
+											<span class="flex gap-4 text-xs items-center justify-center mr-4"
+												><span class="relative z-30">{score}</span><span class="absolute z-20"
+													><Score progress={score} /></span
+												></span
+											>
 										</td>
 									</tr>
 								{/each}

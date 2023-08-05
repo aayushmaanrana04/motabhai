@@ -25,6 +25,7 @@
 				isLoggedIn.set(false);
 			}
 		});
+		// goto('/login');
 	});
 </script>
 
