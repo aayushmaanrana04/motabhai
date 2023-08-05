@@ -50,8 +50,8 @@
 	</div>
 	<div class="flex flex-col justify-center gap-2">
 		<div class="flex flex-col text-center gap-4">
-			<span class="text-xl font-medium text-white">Create an account </span>
-			<span class="text-sm text-white">Enter your email below to create your account </span>
+			<span class="text-xl font-medium">Create an account </span>
+			<span class="text-sm">Enter your email below to create your account </span>
 			<input
 				class="w-64 mx-auto p-2 rounded bg-bg border border-1 border-zinc-900 text-white outline-0"
 				placeholder="name@example.com"

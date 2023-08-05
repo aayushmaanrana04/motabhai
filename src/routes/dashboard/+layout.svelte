@@ -1,5 +1,4 @@
 <script>
-	import { goto } from '$app/navigation';
 	import { auth as authStore, isLoggedIn } from '@store';
 	import { onMount } from 'svelte';
 	import Header from '../../components/Header.svelte';
@@ -20,11 +19,9 @@
 	$: console.log($isLoggedIn);
 </script>
 
-<body class="bg-bg min-h-screen">
-	<Header />
-	<!-- {#if $isLoggedIn} -->
-		<slot />
-	<!-- {:else} -->
-		<!-- <p>loading...</p> -->
-	<!-- {/if} -->
-</body>
+<!-- {#if $isLoggedIn} -->
+<Header />
+<slot />
+<!-- {:else} -->
+<!-- <p>loading...</p> -->
+<!-- {/if} -->

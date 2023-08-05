@@ -4,8 +4,6 @@
 	import { onMount } from 'svelte';
 	import { onAuthStateChanged } from 'firebase/auth';
 	import { initFirebase } from '$lib/firebase';
-	import { goto } from '$app/navigation';
-
 	onMount(() => {
 		const { auth } = initFirebase();
 		const unsub = onAuthStateChanged(auth, async (user) => {
@@ -29,4 +27,6 @@
 	});
 </script>
 
-<slot />
+<body class="text-black dark:text-white bg-white dark:bg-black min-h-screen">
+	<slot />
+</body>
