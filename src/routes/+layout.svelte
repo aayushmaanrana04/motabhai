@@ -1,15 +1,20 @@
 <script>
 	import '../app.css';
-	import { auth as authStore } from '@store';
+	import { auth as authStore, isLoggedIn } from '@store';
 	import { onMount } from 'svelte';
 	import { onAuthStateChanged } from 'firebase/auth';
 	import { initFirebase } from '$lib/firebase';
 
 	onMount(() => {
 		const { auth } = initFirebase();
-		onAuthStateChanged(auth, (user) => {
-			authStore.set(user);
+		const unsub = onAuthStateChanged(auth, (user) => {
+			if (user) {
+				authStore.set(user);
+				isLoggedIn.set(true);
+			}
 		});
+
+		unsub();
 	});
 
 	authStore.subscribe((user) => {

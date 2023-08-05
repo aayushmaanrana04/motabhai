@@ -17,3 +17,5 @@ type User = {
 	email: string | null;
 };
 export const auth = writable<User | null>(null);
+
+export const isLoggedIn = writable<boolean>(false);

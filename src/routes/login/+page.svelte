@@ -1,14 +1,19 @@
 <script lang="js">
 	import { goto } from '$app/navigation';
 	import { initFirebase } from '$lib/firebase';
+	import { isLoggedIn } from '@store';
 	import { signInWithPopup } from 'firebase/auth';
+	import { Button } from 'flowbite-svelte';
 
 	async function login() {
 		try {
 			const { auth, provider } = initFirebase();
 			const response = await signInWithPopup(auth, provider);
-			console.log(response.user.uid);
-			// goto('/dashboard');
+			console.log(response.user.email);
+			if (response) {
+				isLoggedIn.set(true);
+				goto('/dashboard');
+			}
 		} catch (e) {
 			console.log(e);
 		}
@@ -17,7 +22,9 @@
 
 <section>
 	<div />
-	<button class="loginwithgoogle" on:click={login}>Login with Google</button>
+	<span class="flex items-center justify-center">
+		<Button class="p-4 text-bold m-auto bg-slate-300" on:click={login}>Login with Google</Button>
+	</span>
 </section>
 
 <style>
