@@ -5,15 +5,18 @@
 	import { goto } from '$app/navigation';
 
 	async function logout() {
-		const { auth } = initFirebase();
-		signOut(auth)
-			.then(() => {
-				console.log('user signed out');
-				goto('/');
-			})
-			.catch((e) => {
-				console.log(e);
+		try {
+			const { auth } = initFirebase();
+			const data = await fetch('test.buyhatke.com/logout', {
+				method: 'POST'
 			});
+			if (data) {
+				await signOut(auth);
+				localStorage.removeItem('uid');
+			}
+		} catch (e) {
+			console.log(e);
+		}
 	}
 </script>
 

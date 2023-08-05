@@ -60,7 +60,7 @@
 		{#each data as { walletAddress, score }}
 			<tr class="bg-rowEven">
 				<td>{walletAddress}</td>
-				<td>{score}</td>
+				<td>{score}<Score progress={score} /></td>
 			</tr>
 		{/each} -->
 <!-- 

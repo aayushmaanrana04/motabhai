@@ -7,7 +7,7 @@
 	let isReady = false;
 	onMount(() => {
 		if (!$isLoggedIn) {
-			// goto('/');
+			// goto('/login');
 		}
 		authStore.subscribe((user) => {
 			if (user) {
@@ -17,13 +17,14 @@
 			}
 		});
 	});
+	$: console.log($isLoggedIn);
 </script>
 
 <body class="bg-bg min-h-screen">
 	<Header />
-	{#if $isLoggedIn}
+	<!-- {#if $isLoggedIn} -->
 		<slot />
-	{:else}
-		<p>loading...</p>
-	{/if}
+	<!-- {:else} -->
+		<!-- <p>loading...</p> -->
+	<!-- {/if} -->
 </body>
