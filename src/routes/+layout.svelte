@@ -27,6 +27,6 @@
 	});
 </script>
 
-<body class="text-black dark:text-white bg-white dark:bg-black min-h-screen">
+<body class="min-h-screen">
 	<slot />
 </body>

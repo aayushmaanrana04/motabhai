@@ -16,6 +16,18 @@ type User = {
 	uid: string | null;
 	email: string | null;
 };
+
+export type gameDataType = {
+	id: number;
+	walletAddress: string;
+	amount: string;
+	token: string;
+	chainName: string;
+	numberOfTransactions: number;
+	score: number;
+};
 export const auth = writable<User | null>(null);
 
 export const isLoggedIn = writable<boolean>(false);
+
+export const gameData = writable<gameDataType[]>();

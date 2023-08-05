@@ -1,15 +1,49 @@
 <script lang="ts">
-	import Logout from '../../components/logout.svelte';
-	import { auth as authStore } from '@store';
-	import { Tabs, TabItem } from 'flowbite-svelte';
+	import { onMount } from 'svelte';
 	import Chain from '../../components/Chain.svelte';
-	import Game from '../../components/Game.svelte';
+	import Table from '../../components/table.svelte';
 	import { Button, Dropdown, DropdownItem, Chevron } from 'flowbite-svelte';
+	import { gameData } from '@store';
+
 	let dropdownOpen = false;
 	let selectedChainValue: String = '';
-	let data = [{ chainName: 'ERC20' }, { chainName: 'USDT20' }, { chainName: 'TETH20' }];
+	let data = [
+		{ chainName: 'POLYGON', isDisabled: false },
+		{ chainName: 'BNB', isDisabled: true },
+		{ chainName: 'SOLANA', isDisabled: true }
+	];
 	let handleSelect = (value: String) => {
 		selectedChainValue = value;
+	};
+	let selection: number = 10;
+
+	const handleExport = async () => {
+		const params = new URLSearchParams();
+		params.append('pageNo', String(3));
+		const response = await fetch('https://test.buyhatke.com/airshot/categories/csv', {
+			body: params,
+			method: 'POST'
+		});
+		if (response) {
+			console.log('sent');
+		}
+	};
+
+	onMount(() => {
+		getGame();
+	});
+
+	const getGame = async () => {
+		const params = new URLSearchParams();
+		params.append('pageNo', String(1));
+		const response = await fetch('https://test.buyhatke.com/airshot/categories/chain/game', {
+			body: params,
+			method: 'POST'
+		});
+		const { data } = await response.json();
+		if (data) {
+			gameData.set(data);
+		}
 	};
 </script>
 
@@ -19,41 +53,58 @@
 		<p class="text-gray-400">Here's a list of Chain Wallet Address</p>
 	</div>
 
-	<div>
-		<Tabs style="pill" class="  text-base  px-0  mx-0 my-0" contentClass="px-0 py-0">
-			<Button class="px-0 py-0 text-base focus:ring-0 " on:mouseenter={() => (dropdownOpen = true)}>
-				<TabItem
-					title="Select chain"
-					defaultClass="text-xl"
-					inactiveClasses="text-black dark:text-white p-2 m-0"
-					activeClasses="text-black dark:text-white p-2"
-				>
-					<Chain />
-				</TabItem>
-			</Button>
-
-			<Dropdown
-				bind:open={dropdownOpen}
-				class="w-32 p-1 space-y-1 text-sm border border-gray-200 dark:border-gray-800"
+	<div class="">
+		<div class="flex">
+			<Button
+				class="focus:ring-0 text-md text-black  flex justify-between {selection < 5
+					? 'bg-slate-100'
+					: 'border border-1'} p-2 px-4 rounded"
 			>
-				{#each data as chain}
-					<DropdownItem on:click={() => handleSelect(chain.chainName)}
-						>{chain.chainName}</DropdownItem
+				<Chevron>
+					{#if selection > 5}
+						<span class="text-lg p-2 mr-auto">Chains</span>
+					{:else}
+						<span class="text-lg p-2 mr-auto">{data.at(selection)?.chainName}</span>
+					{/if}
+				</Chevron>
+			</Button>
+			<Dropdown bind:open={dropdownOpen} class="overflow-y-auto overflow-x-hidden">
+				{#each data as { chainName, isDisabled }, index (index)}
+					<DropdownItem
+						on:click={() => {
+							selection = Number(index);
+							dropdownOpen = false;
+						}}
+						class="flex gap-2 items-center disabled:opacity-40"
+						disabled={isDisabled}
 					>
+						<div class="w-full flex gap-2">
+							{chainName}
+							{isDisabled ? '(coming soon)' : ''}
+						</div>
+					</DropdownItem>
 				{/each}
 			</Dropdown>
-
-			<TabItem
-				open
-				title="Game"
-				defaultClass="text-xl"
-				inactiveClasses="text-black dark:text-white p-2 m-0"
-				activeClasses="text-black dark:text-white p-2"
+			<Button
+				class={selection === 10 ? 'bg-slate-100 text-black' : 'border border-1'}
+				on:click={() => {
+					selection = 10;
+				}}>Games</Button
 			>
-				<Game />
-			</TabItem>
-		</Tabs>
+		</div>
+
+		{#if selection <= 5}
+			<Chain />
+		{:else if selection === 10}
+			<Table myData={$gameData} />
+		{/if}
 	</div>
+
+	<Button
+		on:click={() => {
+			handleExport;
+		}}>Export</Button
+	>
 </div>
 
 <!-- <Button class="text-gray-800 border border-1 rounded-t-md border-white hover:bg-slate-500"

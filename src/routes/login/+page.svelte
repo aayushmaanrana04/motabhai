@@ -16,7 +16,7 @@
 			if (response) {
 				localStorage.setItem('uid', response.user.uid);
 				const { uid, email, displayName } = response.user;
-				const data = await fetch('airshot/login', {
+				const data = await fetch('/airshot/categories/auth/login', {
 					body: JSON.stringify({ uid, email, displayName }),
 					method: 'POST'
 				});
@@ -48,7 +48,7 @@
 	<div class="flex items-end p-6 bg-bg m-4 relative top-0 bottom-0 left-0 rounded-l-lg">
 		<span class="text-white font-light text-sm mb-8 ml-6">"We need some text here"</span>
 	</div>
-	<div class="flex flex-col justify-center gap-2">
+	<div class="flex flex-col justify-center gap-2 text-white">
 		<div class="flex flex-col text-center gap-4">
 			<span class="text-xl font-medium">Create an account </span>
 			<span class="text-sm">Enter your email below to create your account </span>
@@ -60,7 +60,9 @@
 			/>
 		</div>
 		<span class="flex items-center justify-center">
-			<Button class="w-64 p-2 text-bold m-auto bg-slate-300 rounded" on:click={login}>Login</Button>
+			<Button class="w-64 p-2 text-bold m-auto bg-slate-300 rounded text-black" on:click={login}
+				>Login</Button
+			>
 		</span>
 	</div>
 </section>

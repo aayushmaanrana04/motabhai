@@ -2,12 +2,10 @@
 	import { auth as authStore, isLoggedIn } from '@store';
 	import { onMount } from 'svelte';
 	import Header from '../../components/Header.svelte';
+	import { gameData } from '@store';
 
 	let isReady = false;
 	onMount(() => {
-		if (!$isLoggedIn) {
-			// goto('/login');
-		}
 		authStore.subscribe((user) => {
 			if (user) {
 				isReady = true;
@@ -15,13 +13,18 @@
 				isReady = false;
 			}
 		});
+		// getGame();
 	});
+
+	
 	$: console.log($isLoggedIn);
 </script>
 
 <!-- {#if $isLoggedIn} -->
-<Header />
-<slot />
+<body class="text-black dark:text-white bg-white dark:bg-black">
+	<Header/>
+	<slot />
+</body>
 <!-- {:else} -->
 <!-- <p>loading...</p> -->
 <!-- {/if} -->
