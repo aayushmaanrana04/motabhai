@@ -5,6 +5,8 @@
 	import { signInWithPopup } from 'firebase/auth';
 	import { Button } from 'flowbite-svelte';
 	import Airshot from '../../images/airshot.png';
+	import backImg from '../../images/Header.jpg';
+	import Header from '../../components/Header.svelte';
 
 	let emailData = '';
 
@@ -42,11 +44,17 @@
 	class="border border-1 border-gray-200 absolute top-0 left-0 bottom-0 right-0 m-4 rounded-lg pointer-events-none z-10"
 />
 
-<img src={Airshot} class="absolute top-0 left-0 z-40 ml-8 mt-8" width="96" />
+<img src={Airshot} class="absolute top-0 right-10 z-40 ml-8 mt-8" width="96" />
 
 <section>
-	<div class="flex items-end p-6 bg-bg m-4 relative top-0 bottom-0 left-0 rounded-l-lg">
-		<span class="text-white font-light text-sm mb-8 ml-6">"We need some text here"</span>
+	<div
+		class="flex items-end p-6 bg-bg m-4 relative top-0 bottom-0 left-0 rounded-l-lg"
+		style={`background-image:url(${backImg});     background-position: left;
+		"`}
+	>
+		<span class="text-white font-light text-5xl mb-8 ml-6"
+			>"Active blockchain gaming address management"</span
+		>
 	</div>
 	<div class="flex flex-col justify-center gap-2 text-white">
 		<div class="flex flex-col text-center gap-4">

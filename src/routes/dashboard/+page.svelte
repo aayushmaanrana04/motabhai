@@ -12,8 +12,8 @@
 		{ chainName: 'SOLANA', isDisabled: true }
 	];
 	let selection: number = 0;
-	let filterSelect: number = 1;
-	let filters = ['Score', 'Amount', 'Number of Transactions'];
+	let filterSelect: number = 0;
+	let filters = ['Score', 'Token Volume', 'Number of Transactions'];
 
 	const handleExport = async () => {
 		const params = new URLSearchParams();
@@ -100,6 +100,9 @@
 	};
 
 	$: {
+		if (filterSelect === 0) {
+			getPolygon();
+		}
 		if (filterSelect === 1) {
 			getAmount();
 		}
@@ -109,19 +112,21 @@
 	}
 </script>
 
-<div class="container mx-auto flex flex-col justify-center items-center">
-	<div class=" py-10 text-start mr-auto ml-8 xl:ml-20">
-		<h1 class="text-3xl pb-1">Welcome Back!</h1>
-		<p class="text-gray-400">Here's a list of Chain Wallet Address</p>
+<div class=" w-screen container mx-auto flex flex-col justify-center items-center">
+	<div class="text-left mr-auto xl:ml-16 2xl:ml-32">
+		<div class=" py-10 text-start">
+			<h1 class="text-3xl pb-1">Welcome Back!</h1>
+			<p class="text-gray-400">Here's a list of Chain Wallet Address</p>
+		</div>
 	</div>
 
 	<div class="">
-		<div class="flex gap-2">
+		<div class="flex gap-2 h-11">
 			<!-- chain select  -->
 			<Button
 				class="focus:ring-0 text-md text-black  flex justify-between {selection < 5
 					? 'bg-slate-100'
-					: 'bg-slate-600'} p-1 px-4 rounded"
+					: 'bg-slate-600'} px-5 rounded"
 			>
 				<Chevron>
 					{#if selection > 5}
@@ -149,7 +154,9 @@
 				{/each}
 			</Dropdown>
 			<!-- filter select  -->
-			<Button class="focus:ring-0 text-md text-black flex justify-between bg-slate-100 rounded">
+			<Button
+				class="focus:ring-0 text-md text-black flex justify-between bg-slate-100 rounded px-5"
+			>
 				<Chevron>
 					<span class="text-lg p-1 mr-auto">{filters.at(filterSelect)}</span>
 				</Chevron>
@@ -171,7 +178,7 @@
 			</Dropdown>
 
 			<Button
-				class="bg-green-500 text-white ml-auto"
+				class="bg-green-500 text-white ml-auto px-4 text-md"
 				on:click={() => {
 					handleExport();
 				}}>Export</Button

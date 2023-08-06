@@ -12,7 +12,7 @@
 	// });
 </script>
 
-<div class="flex flex-col justify-center h-full text-black dark:text-white">
+<div class="flex flex-col justify-center h-full text-white">
 	<table class="max-w-full mt-5 table mb-10">
 		<div class=" max-w-full flex items-center justify-center">
 			<div class="flex flex-col">
@@ -23,19 +23,19 @@
 					>
 						<table class="w-screen-lg max-w-full text-base">
 							<thead class="">
-								<tr class="hover:bg-gray-100 dark:hover:bg-neutral-900 w-full">
+								<tr class="hover:bg-neutral-900 w-full">
 									<th
 										class="px-6 py-3 text-left uppercase tracking-wider border-b border-zinc-800 font-light"
 									>
 										<span>Wallet Address</span>
 									</th>
 									<th
-										class="px-6 py-3 text-right leading-4 uppercase tracking-wider border-b border-gray-200 dark:border-zinc-800 font-extralight ml-auto"
+										class="px-6 py-3 text-right leading-4 uppercase tracking-wider border-b border-zinc-800 font-extralight ml-auto"
 									>
 										{#if filterSelect === 0}
 											<span>Score</span>
 										{:else if filterSelect === 1}
-											<span>Amount</span>
+											<span>Token Volume</span>
 										{:else if filterSelect === 2}
 											<span>Number Of Transactions</span>
 										{/if}
@@ -51,12 +51,12 @@
 											{walletAddress}
 										</td>
 										<td
-											class="pr-5 pl-20 md:pl-40 lg:pl-96 xl:pl-80 py-5 whitespace-no-wrap leading-5 border-b border-zinc-800"
+											class="pr-5 pl-20 md:pl-40 lg:pl-96 xl:pl-80 py-5 whitespace-no-wrap leading-5 border-b text-white border-zinc-800"
 										>
 											<span class="flex gap-4 text-xs items-center justify-center mr-4">
 												{#if filterSelect === 0}
 													<span class="relative z-30">{score}</span>
-													<span class="absolute z-20"><Score progress={score} /></span>
+													<span class="absolute z-20 text-white"> <Score progress={score} /></span>
 												{:else if filterSelect === 1}
 													<span class="relative z-30">{Number(amount).toFixed(2)}</span>
 												{:else if filterSelect === 2}
