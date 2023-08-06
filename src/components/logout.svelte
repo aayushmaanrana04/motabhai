@@ -12,6 +12,7 @@
 			});
 			// if (data) {
 			await signOut(auth);
+			goto('/login');
 			// }
 		} catch (e) {
 			console.log(e);

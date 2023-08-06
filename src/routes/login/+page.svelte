@@ -52,24 +52,24 @@
 		style={`background-image:url(${backImg});     background-position: left;
 		"`}
 	>
-		<span class="text-white font-light text-5xl mb-8 ml-6"
+		<span class="text-black bg-slate-50 p-3 w-min font-light text-5xl mb-8 ml-6"
 			>"Active blockchain gaming address management"</span
 		>
 	</div>
 	<div class="flex flex-col justify-center gap-2 text-white">
 		<div class="flex flex-col text-center gap-4">
-			<span class="text-xl font-medium">Create an account </span>
-			<span class="text-sm">Enter your email below to create your account </span>
+			<!-- <span class="text-xl font-medium">Create an account </span> -->
+			<!-- <span class="text-sm">Enter your email below to create your account </span>
 			<input
 				class="w-64 mx-auto p-2 rounded bg-bg border border-1 border-zinc-900 text-white outline-0"
 				placeholder="name@example.com"
 				type="email"
-				bind:value={emailData}
-			/>
+				bind:value={emailData} -->
+			<!-- /> -->
 		</div>
 		<span class="flex items-center justify-center">
-			<Button class="w-64 p-2 text-bold m-auto bg-slate-300 rounded text-black" on:click={login}
-				>Login</Button
+			<Button class=" p-4 text-bold m-auto bg-slate-300 rounded text-black" on:click={login}
+				>Login with Google</Button
 			>
 		</span>
 	</div>
