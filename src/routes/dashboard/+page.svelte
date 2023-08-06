@@ -17,7 +17,7 @@
 
 	const handleExport = async () => {
 		const params = new URLSearchParams();
-		params.append('pageNo', String(1));
+		params.append('pageNo', String(1000));
 		const response = await fetch('https://test.buyhatke.com/airshot/categories/csv/downloadData', {
 			body: params,
 			method: 'POST'
